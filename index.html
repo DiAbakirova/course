@@ -4,6 +4,7 @@
 
         <style>
             .mask {
+                display: block;
                 position: fixed;
                 left: 0;
                 top: 0;
@@ -41,16 +42,43 @@
                 cursor: pointer;
             }   
             .finish > button:hover {
-                background-color: blue;
-               
-            }    
-    
- 
+                background-color: blue; 
+            }  
+            .hidden {
+                display: none;
+
         </style>
+
+        <script>
+            function show () {
+              let element_input = document.querySelector(".text-data");
+              let data = element_input.value;
+
+                if (data.trim()) {
+                    let element_result = document.querySelector(".result");
+                    element_result.innerHTML = "Привет, " + data + "!";
+
+                    // console.dir(data);
+                    
+                    let element_window = document.querySelector(".mask");
+                    element_window.classList.remove("hidden");
+                } 
+            }
+
+            function hide () {
+                let element_window = document.querySelector(".mask"); 
+                element_window.classList.add("hidden");  
+            }   
+
+        </script>
     </head>
 
     <body>
-        <div class="mask">
+        <input type="text" class="text-data" />
+
+        <button onclick="show()">Окошко</button>
+
+        <div class="mask hidden">
             <div class="window"> 
                 <h2>Результат</h2>
                 <hr />
@@ -59,11 +87,12 @@
                 </div>
                 <hr />
                 <div class="finish">
-                    <button>Закрыть</button>
+                    <button onclick="hide()">Закрыть</button>
                 </div>
              </div>   
         </div>
 
         Hi there <br />Hi there <br />Hi there <br />Hi there <br />Hi there <br />Hi there <br />Hi there <br />
     </body>
-</html> 
+
+ </html>
